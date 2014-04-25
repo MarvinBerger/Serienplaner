@@ -220,7 +220,7 @@ public class StartActivity extends Activity{
 	            mDrawerLayout.closeDrawer(mDrawerList);
 	        } else {
 	            // error in creating fragment
-	           Log.i("Error", "Fragment ist null");
+	           Log.i("Error", "Fragment sssist null");
 	        }
 	    }
 }
