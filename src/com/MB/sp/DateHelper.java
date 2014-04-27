@@ -3,6 +3,7 @@ import java.util.Date;
 
 
 public class DateHelper {
+	public static  String[] tage = new String[]{"", "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"};
 	public static Date getNextDate(Date[] d)
 	{
 		long now = System.currentTimeMillis();
@@ -17,5 +18,10 @@ public class DateHelper {
 		if(next.getTime()==0)
 			return null;
 		return next;
+	}
+	public static Serie[] sortByDate(Serie[] serien)
+	{
+		java.util.Arrays.sort(serien);
+		return serien ;
 	}
 }

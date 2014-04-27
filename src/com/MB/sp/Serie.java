@@ -1,7 +1,7 @@
 package com.MB.sp;
 import java.util.Date;
 
-public class Serie {
+public class Serie implements Comparable<Serie> {
 	private String name;
 	private String channel;
 	private Date nextDate;
@@ -34,7 +34,7 @@ public class Serie {
 	}
 
 	public Date getNextDate() {
-		return nextDate;
+		return DateHelper.getNextDate(dates);
 	}
 
 	public String getCountry() {
@@ -47,5 +47,14 @@ public class Serie {
 
 	public int getSeason() {
 		return season;
+	}
+
+	@Override
+	public int compareTo(Serie another) {
+		if(getNextDate().getTime() < another.getNextDate().getTime())
+			return -1;
+		if(getNextDate().getTime() > another.getNextDate().getTime())
+			return 1;
+		return 0;
 	}
 }
