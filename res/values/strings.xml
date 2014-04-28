@@ -28,5 +28,8 @@
      
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+    <string name="noseries">Keine Serien hinzugefügt</string>
+       <string name="toast_no_content">Bisher wurden keine Serien hinzugefügt. Dies kann unter "Meine Serien" getan werden.</string>
+    
     
 </resources>

@@ -12,11 +12,13 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnClickListener {
 
 	public HomeFragment() {
 	}
@@ -32,6 +34,21 @@ public class HomeFragment extends Fragment {
 	}
 
 	private void showNoSeriesScreen() {
+		LinearLayout ll = (LinearLayout) this.getActivity().findViewById(
+				R.id.content);
+		View serienView = LayoutInflater.from(this.getActivity()).inflate(
+				R.layout.no_content, null);
+		serienView.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				Toast.makeText(HomeFragment.this.getActivity(), HomeFragment.this.getResources().getString(R.string.toast_no_content), Toast.LENGTH_LONG).show();
+			}
+			
+			
+		});
+		ll.addView(serienView);
+		
 	}
 
 	private void fillContent() {
@@ -70,9 +87,17 @@ public class HomeFragment extends Fragment {
 					+ "   "
 					+ this.getActivity().getResources()
 							.getString(R.string.season) + ":" + s.getSeason());
+			serienView.setId(s.getID());
 			ll.addView(serienView);
 
 		}
 
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		Toast.makeText(this.getActivity(), SerienManager.getInstance(this.getActivity()).getSerie(v.getId()).getName(),Toast.LENGTH_LONG).show();
+		
 	}
 }

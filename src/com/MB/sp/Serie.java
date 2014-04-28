@@ -8,6 +8,7 @@ public class Serie implements Comparable<Serie> {
 	private String country;
 	private Date[] dates;
 	private int season;
+	private int id;
 /*
  * @param n Der Name der Serie
  * @param c Der Sender der Serie
@@ -16,12 +17,13 @@ public class Serie implements Comparable<Serie> {
  * @param s Die Staffel der Serie
  * 
  * */
-	public Serie(String n, String c, String co, Date[] d, int s) {
+	public Serie(String n, String c, String co, Date[] d, int s, int id) {
 		name = n;
 		channel = c;
 		country = co;
 		dates = d;
 		season = s;
+		this.id= id;
 		nextDate = DateHelper.getNextDate(dates);
 	}
 
@@ -47,6 +49,10 @@ public class Serie implements Comparable<Serie> {
 
 	public int getSeason() {
 		return season;
+	}
+	public int getID()
+	{
+		return id;
 	}
 
 	@Override

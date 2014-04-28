@@ -10,10 +10,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SerienManager extends SQLiteOpenHelper{
 	//Tabelle
-	private final static String SERIEN_TABELLE ="CREATE TABLE IF NOT EXISTS `serientable` (`name` TEXT, `country` TEXT,`dates` TEXT,`channel` TEXT, `season` INT) ";
+	private final static String SERIEN_TABELLE ="CREATE TABLE IF NOT EXISTS `serientable` (`id` int,`name` TEXT, `country` TEXT,`dates` TEXT,`channel` TEXT, `season` INT) ";
+	
 	//Konstanten
 private final static String NAME = "serien";
 private final static String ALLE_SERIEN ="SELECT * FROM `serientable`";
+private final static String SERIE_PER_ID ="SELECT * FROM `serientable` WHERE `serientabelle`.`id`=#ersetzen#";
+
 // Instanz Variabel
 private static SerienManager sm;
 	private SerienManager(Context context) {
@@ -42,13 +45,24 @@ private static SerienManager sm;
 			for(int i=0; i<d.length; i++)
 				d[i]= new Date(Long.parseLong(c.getString(2).split(";")[i])*1000);
 			
-			out[index++] = new Serie(c.getString(0), c.getString(3), c.getString(1),d, c.getInt(4));
+			out[index++] = new Serie(c.getString(0), c.getString(4), c.getString(2),d, c.getInt(3), c.getInt(1));
 		}while(c.moveToNext());
 		return out;
 	}
 	public void addSerie(Serie s)
 	{
 		this.getWritableDatabase().execSQL("SQL");
+	}
+	public Serie getSerie(int id)
+	{
+		Cursor c = this.getReadableDatabase().rawQuery(SERIE_PER_ID.replace("#ersetzen#", ""+id), null);
+		c.moveToFirst();
+		Date[] d = new Date[c.getString(2).split(";").length];
+		for(int i=0; i<d.length; i++)
+			d[i]= new Date(Long.parseLong(c.getString(2).split(";")[i])*1000);
+		return new Serie(c.getString(0), c.getString(4), c.getString(2),d, c.getInt(3), c.getInt(1));
+
+		
 	}
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
