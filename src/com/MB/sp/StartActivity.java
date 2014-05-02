@@ -1,7 +1,9 @@
 package com.MB.sp;
 import java.util.ArrayList;
 
+import com.MB.fragments.CalendarFragment;
 import com.MB.fragments.HomeFragment;
+import com.MB.fragments.ListFragment;
 import com.MB.fragments.SearchFragment;
 import com.MB.sp.R;
 
@@ -189,13 +191,13 @@ public class StartActivity extends Activity{
 	            fragment = new HomeFragment();
 	            break;
 	        case 1:
-	           fragment = new SearchFragment();
-	            break;
+	        	fragment = new CalendarFragment();
+	        	break;
 	        case 2:
-	            
+	            fragment = new ListFragment();
 	            break;
 	        case 3:
-	         
+	        	
 	            break;
 	        case 4:
 	           
