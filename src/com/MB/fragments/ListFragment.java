@@ -6,8 +6,8 @@ import java.util.List;
 import com.MB.sp.R;
 import com.MB.sp.Serie;
 import com.MB.sp.SerienManager;
-import com.MB.sp.StartActivity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -54,9 +54,15 @@ public class ListFragment extends Fragment implements OnItemClickListener{
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		SerieFragment frag = new SerieFragment();
-		frag.setSerie(serien[arg2]);
-		((StartActivity)this.getActivity()).setFragment(frag);
+		View alertView = this.getActivity().getLayoutInflater().inflate(R.layout.list_alert, null);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+		builder.setView(alertView);
+		TextView textView = (TextView) alertView.findViewById(R.id.titleAlert);
+		textView.setText(serien[arg2].getName());
+		textView = (TextView) alertView.findViewById(R.id.channelAlert);
+		textView.setText(serien[arg2].getChannel());
+		AlertDialog dialog = builder.create();
+		dialog.show();
 	}
 	
 }

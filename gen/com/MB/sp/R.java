@@ -29,31 +29,34 @@ public final class R {
         public static final int list_selector=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000d;
+        public static final int action_settings=0x7f08000f;
+        public static final int channelAlert=0x7f080004;
         public static final int content=0x7f080001;
-        public static final int counter=0x7f08000c;
-        public static final int drawer_layout=0x7f080007;
-        public static final int frame_container=0x7f080008;
-        public static final int icon=0x7f08000a;
-        public static final int infos=0x7f080006;
-        public static final int listView1=0x7f080003;
-        public static final int list_slidermenu=0x7f080009;
-        public static final int name=0x7f080002;
+        public static final int counter=0x7f08000e;
+        public static final int drawer_layout=0x7f080009;
+        public static final int frame_container=0x7f08000a;
+        public static final int icon=0x7f08000c;
+        public static final int infos=0x7f080008;
+        public static final int listView1=0x7f080006;
+        public static final int list_slidermenu=0x7f08000b;
+        public static final int name=0x7f080005;
         public static final int scrollView1=0x7f080000;
-        public static final int textView1=0x7f080004;
-        public static final int title=0x7f08000b;
-        public static final int zeit=0x7f080005;
+        public static final int textView1=0x7f080003;
+        public static final int title=0x7f08000d;
+        public static final int titleAlert=0x7f080002;
+        public static final int zeit=0x7f080007;
     }
     public static final class layout {
         public static final int home_fragment=0x7f030000;
-        public static final int list_day=0x7f030001;
-        public static final int list_fragment=0x7f030002;
-        public static final int list_serie=0x7f030003;
-        public static final int no_content=0x7f030004;
-        public static final int search_fragment=0x7f030005;
-        public static final int serie=0x7f030006;
-        public static final int serie_fragment=0x7f030007;
-        public static final int start=0x7f030008;
+        public static final int list_alert=0x7f030001;
+        public static final int list_day=0x7f030002;
+        public static final int list_fragment=0x7f030003;
+        public static final int list_serie=0x7f030004;
+        public static final int no_content=0x7f030005;
+        public static final int search_fragment=0x7f030006;
+        public static final int serie=0x7f030007;
+        public static final int serie_fragment=0x7f030008;
+        public static final int start=0x7f030009;
     }
     public static final class menu {
         public static final int main=0x7f070000;
