@@ -7,6 +7,7 @@ import com.MB.sp.R;
 import com.MB.sp.Serie;
 import com.MB.sp.SerienManager;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,7 +23,8 @@ import android.widget.TextView;
 
 public class ListFragment extends Fragment implements OnItemClickListener{
 	
-	public View rootView;
+	private Serie[] serien; 
+	private View rootView;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
@@ -33,7 +35,7 @@ public class ListFragment extends Fragment implements OnItemClickListener{
 	
 	private void fillContent(){
 		SerienManager sm = SerienManager.getInstance(this.getActivity());
-		Serie[] serien = sm.getSeries();
+		serien = sm.getSeries();
 		List<String> list = new ArrayList<String>();
 		for(int i=0;i<serien.length;i++)
 			list.add(serien[i].getName());
@@ -46,13 +48,21 @@ public class ListFragment extends Fragment implements OnItemClickListener{
 		    }
 		};
 		ListView lv = (ListView)rootView.findViewById(R.id.listView1);
-		//lv.s;
+		lv.setOnItemClickListener(this);
 		lv.setAdapter(adapter);
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		
+		View alertView = this.getActivity().getLayoutInflater().inflate(R.layout.list_alert, null);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+		builder.setView(alertView);
+		TextView textView = (TextView) alertView.findViewById(R.id.titleAlert);
+		textView.setText(serien[arg2].getName());
+		textView = (TextView) alertView.findViewById(R.id.channelAlert);
+		textView.setText(serien[arg2].getChannel());
+		AlertDialog dialog = builder.create();
+		dialog.show();
 	}
 	
 }

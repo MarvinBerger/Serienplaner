@@ -225,5 +225,15 @@ public class StartActivity extends Activity{
 	           Log.i("Error", "Fragment sssist null");
 	        }
 	    }
+	    
+	    public void setFragment(Fragment fragment){
+	    	if (fragment != null) {
+	            FragmentManager fragmentManager = getFragmentManager();
+	            fragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit();
+	        } else {
+	            // error in creating fragment
+	           Log.i("Error", "Fragment sssist null");
+	        }
+	    }
 }
  
