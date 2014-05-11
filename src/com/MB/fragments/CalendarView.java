@@ -21,7 +21,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CalendarView extends View implements OnTouchListener{
+public class CalendarView extends LinearLayout implements OnTouchListener{
 	private final int TOP_BORDER=50;
 	private final String[] DAY_STRINGS = new String[]{"SO", "MO", "DI", "MI", "DO", "FR", "SA"}; 
 Paint p;
@@ -33,6 +33,7 @@ Tag[] tage = new Tag[35];
 RectF[] rects = new RectF[35];
 	public CalendarView(Context context) {
 		super(context);
+		setWillNotDraw(false);
 		// TODO Auto-generated constructor stub
 		init();
 		Log.i("CalendarView", "Init");
@@ -75,6 +76,7 @@ RectF[] rects = new RectF[35];
 		infoHeight = this.getHeight()-calendarHeight-TOP_BORDER;
 		int zeile =0;
 		p.setTextSize(30);
+		p.setColor(Color.BLACK);
 		for(int i=0; i<7; i++)
 		{
 			c.drawText(DAY_STRINGS[i], i*width/7+(width/14)-20, 30, p);
@@ -96,7 +98,9 @@ RectF[] rects = new RectF[35];
 			}else if(tage[i].isEvent())
 				p.setColor(Color.RED);
 			
-			c.drawText(tage[i].toString(), rect.centerX()-korrektur, rect.centerY()-korrektur, p);
+			c.drawText(tage[i].toString(), rect.centerX()-korrektur, rect.centerY()-korrektur+25, p);
+			p.setColor(Color.BLACK);
+			c.drawLine(0, calendarHeight+50, width, calendarHeight+50, p);
 			Log.i("Koords:", (width/7)*(i%7)+"  "+zeile*calendarHeight/5+"  "+ width/7*((i%7)+1)+"  "+zeile+1*calendarHeight/5 );
 		}
 			
@@ -119,6 +123,10 @@ RectF[] rects = new RectF[35];
 				return "";
 			else
 				return ""+zahl;
+		}
+		public String getInfo()
+		{
+			return "Hier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\nHier stehen die Termine!\n";
 		}
 		public boolean isEvent(){
 			return event;
@@ -154,18 +162,20 @@ RectF[] rects = new RectF[35];
 		tv.setWidth(width);
 		tv.setHeight(infoHeight);
 		tv.setX(0);
-		tv.setY(calendarHeight);
+		tv.setY(calendarHeight+50);
+		tv.setTextColor(Color.BLACK);
 		// insert into main view
 				
-				//((ViewGroup) this).addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
+				addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 				
 	}
 	public void showInfo(Tag t)
 	{
 		if(tv==null)
 		{
-			//initTextView();
+			initTextView();
 		}
+		tv.setText(t.getInfo());
 	}
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
