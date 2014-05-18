@@ -54,6 +54,7 @@ public class SerienManager extends SQLiteOpenHelper {
 		//TEST TEIL
 		out = new Serie[1];
 		out[0]  = new Serie("Serie 1", "ProSieben", "DE", new Date[]{new Date()}, 0, 1);
+		// TEST TEIL ENDE
 		return out;
 	}
 
@@ -76,6 +77,13 @@ public class SerienManager extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+	}
+
+	public void deleteSerie(Serie serie) {
+		//3 Kriterien, eine ID pro Eintrag könnte Sinnvoller sein
+	
+		this.getWritableDatabase().execSQL("DELETE FROM `serientable` WHERE `id`='"+serie.getID()+"')");
+		
 	}
 
 }

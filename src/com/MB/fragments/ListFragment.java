@@ -9,6 +9,7 @@ import com.MB.sp.SerienManager;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,13 +55,37 @@ public class ListFragment extends Fragment implements OnItemClickListener{
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		View alertView = this.getActivity().getLayoutInflater().inflate(R.layout.list_alert, null);
+		showInfo(arg2);
+	}
+	private void showInfo(final int object)
+	{
+		//Builder
 		AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+		//Content
+		View alertView = this.getActivity().getLayoutInflater().inflate(R.layout.list_alert, null);
 		builder.setView(alertView);
 		TextView textView = (TextView) alertView.findViewById(R.id.titleAlert);
-		textView.setText(serien[arg2].getName());
+		textView.setText(serien[object].getName());
 		textView = (TextView) alertView.findViewById(R.id.channelAlert);
-		textView.setText(serien[arg2].getChannel());
+		textView.setText(serien[object].getChannel());
+		//Buttons
+		builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				
+			}
+		});
+		builder.setNegativeButton("Löschen", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				SerienManager.getInstance(ListFragment.this.getActivity().getApplicationContext()).deleteSerie(serien[object]);
+				
+			}
+		});
+		//Show Dialoag
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
