@@ -1,11 +1,4 @@
 package com.MB.sp;
-import java.util.ArrayList;
-
-import com.MB.fragments.CalendarFragment;
-import com.MB.fragments.HomeFragment;
-import com.MB.fragments.ListFragment;
-import com.MB.fragments.SearchFragment;
-import com.MB.sp.R;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -19,12 +12,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.MB.fragments.CalendarFragment;
+import com.MB.fragments.HomeFragment;
+import com.MB.fragments.ListFragment;
+
+import java.util.ArrayList;
 
 
 public class StartActivity extends Activity{
